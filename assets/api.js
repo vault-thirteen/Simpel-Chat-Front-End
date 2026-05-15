@@ -59,12 +59,12 @@ class ApiRequest {
 		this.parameters = parameters;
 	}
 
-	composeFrontEndError(hr) {
+	static composeFrontEndError(hr) {
 		return Err.FrontEndError + ": " + hr.text +
 			"(HTTP Status Code " + hr.statusCode + ")";
 	}
 
-	composeActionMismatchError(hr, ar) {
+	static composeActionMismatchError(hr, ar) {
 		return Err.FrontEndError + ": " + Err.ActionMismatch + ": " +
 			hr.action + " vs " + ar.action;
 	}
@@ -74,12 +74,12 @@ class ApiRequest {
 		let hResp = await hReq.send();
 
 		if (!hResp.isOk) {
-			console.error(this.composeFrontEndError(hResp));
+			console.error(ApiRequest.composeFrontEndError(hResp));
 			return null;
 		}
 
 		if (hResp.jsonObject.action !== this.action) {
-			console.error(this.composeActionMismatchError(hResp, this));
+			console.error(ApiRequest.composeActionMismatchError(hResp, this));
 			return null;
 		}
 
@@ -113,10 +113,17 @@ class HttpRequest {
 	}
 
 	async send() {
-		let ri = {
-			method: this.method,
-			body: JSON.stringify(this.data),
-		};
+		let ri;
+		if (this.data==null){
+			ri = {
+				method: this.method,
+			};
+		} else {
+			ri = {
+				method: this.method,
+				body: JSON.stringify(this.data),
+			};
+		}
 		let resp = await fetch(this.url, ri);
 		let respClone = resp.clone();
 		let jd = await resp.json();

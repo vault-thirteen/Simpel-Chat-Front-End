@@ -10,23 +10,24 @@ import (
 	"github.com/vault-thirteen/Simpel-Chat-Server/src/Chat/models/rpc/rqrp"
 	mime "github.com/vault-thirteen/auxie/MIME"
 
+	"github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/api"
 	rmc "github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/rpc/Client"
 	cci "github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/server/CachedContentItem"
-	"github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/settings"
 )
 
 type CachedContent struct {
-	IndexHtml    *cci.CachedContentItem
-	MainJs       *cci.CachedContentItem
-	ApiJs        *cci.CachedContentItem
-	ModelsJs     *cci.CachedContentItem
-	UiJs         *cci.CachedContentItem
-	StylesCss    *cci.CachedContentItem
-	FaviconPng   *cci.CachedContentItem
-	SettingsJson *cci.CachedContentItem
+	IndexHtml           *cci.CachedContentItem
+	MainJs              *cci.CachedContentItem
+	ApiJs               *cci.CachedContentItem
+	ModelsJs            *cci.CachedContentItem
+	UiJs                *cci.CachedContentItem
+	StylesCss           *cci.CachedContentItem
+	FaviconPng          *cci.CachedContentItem
+	SettingsJson        *cci.CachedContentItem
+	FrontEndVersionJson *cci.CachedContentItem
 }
 
-func NewCachedContent(assetsFolderPath string, ttl int, rpcClient *rmc.Client) (cc *CachedContent, err error) {
+func NewCachedContent(assetsFolderPath string, ttl int, rpcClient *rmc.Client, fev *api.FrontEndVersionForFrontEnd) (cc *CachedContent, err error) {
 	cc = new(CachedContent)
 
 	cc.IndexHtml, err = cci.NewCachedContentItemFromFile(path.Join(assetsFolderPath, Asset_IndexHtml), ContentType_Html, ttl)
@@ -66,7 +67,7 @@ func NewCachedContent(assetsFolderPath string, ttl int, rpcClient *rmc.Client) (
 
 	// Settings.
 	{
-		var stn *settings.SettingsForFrontEnd
+		var stn *api.SettingsForFrontEnd
 		stn, err = getSettingsFromServer(rpcClient)
 		if err != nil {
 			return nil, err
@@ -84,10 +85,26 @@ func NewCachedContent(assetsFolderPath string, ttl int, rpcClient *rmc.Client) (
 		}
 	}
 
+	// Front-End Version.
+	{
+		fevr := api.FrontEndVersionForFrontEndRoot{FrontEndVersion: fev}
+
+		var buf []byte
+		buf, err = json.Marshal(fevr)
+		if err != nil {
+			return nil, err
+		}
+
+		cc.FrontEndVersionJson, err = cci.NewCachedContentItemFromBytes(buf, mime.TypeApplicationJson, ttl)
+		if err != nil {
+			return nil, err
+		}
+	}
+
 	return cc, nil
 }
 
-func getSettingsFromServer(rpcClient *rmc.Client) (stn *settings.SettingsForFrontEnd, err error) {
+func getSettingsFromServer(rpcClient *rmc.Client) (stn *api.SettingsForFrontEnd, err error) {
 	var params = rqrp.SettingsParams{}
 	var result = new(rqrp.SettingsResult)
 	var re *jrm1.RpcError
@@ -99,7 +116,7 @@ func getSettingsFromServer(rpcClient *rmc.Client) (stn *settings.SettingsForFron
 		return nil, re.AsError()
 	}
 
-	stn, err = settings.NewSettingsForFrontEnd(
+	stn, err = api.NewSettingsForFrontEnd(
 		result.MessageSizeMax,
 		result.PasswordLengthMin,
 		result.PasswordLengthMax,

@@ -1,4 +1,4 @@
-package settings
+package api
 
 import (
 	"github.com/vault-thirteen/Simpel-Chat-Front-End/src/helper"

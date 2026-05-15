@@ -1404,10 +1404,9 @@ function initHeaderAndFooter() {
 
 	let footerTd = getPF();
 	clearContents(footerTd);
-	let txt = mc.version.chatFamily + " (" + mc.version.appName + " " +
-		mc.version.appVersion + ", " + mc.version.golang + ").";
-
-
+	let serverVersion = mc.version.appName + " " + mc.version.appVersion + ", " + mc.version.golang;
+	let frontendVersion = mc.fev.appName + " " + mc.fev.appVersion + ", " + mc.fev.goVersion;
+	let txt = mc.version.chatFamily + " (" + serverVersion + "; " + frontendVersion + ").";
 	let ftr = newDiv("footer").with(newSpanWithText(txt));
 	footerTd.appendChild(ftr.el);
 }

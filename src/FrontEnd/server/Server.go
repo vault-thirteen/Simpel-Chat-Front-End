@@ -16,6 +16,7 @@ import (
 	"github.com/vault-thirteen/Simpel-Chat-Server/src/Chat/models/rpc"
 	"github.com/vault-thirteen/Simpel-Chat-Server/src/Chat/models/rpc/rqrp"
 	mime "github.com/vault-thirteen/auxie/MIME"
+	ver "github.com/vault-thirteen/auxie/Versioneer/classes/Versioneer"
 	"github.com/vault-thirteen/auxie/header"
 
 	"github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/api"
@@ -38,6 +39,7 @@ type Server struct {
 	isRunning          *atomic.Bool
 	stopTime           time.Time
 	listenError        error
+	fev                *api.FrontEndVersionForFrontEnd
 	cachedContent      *cc.CachedContent
 }
 
@@ -47,6 +49,7 @@ func NewServer(
 	rpcClient *rmc.Client,
 	serverStartTimeTS time.Time,
 	assetsFolder string,
+	ver *ver.Versioneer,
 ) (srv *Server, err error) {
 	srv = &Server{
 		settings:           settings,
@@ -62,7 +65,12 @@ func NewServer(
 		Handler: http.Handler(http.HandlerFunc(srv.router)),
 	}
 
-	srv.cachedContent, err = cc.NewCachedContent(assetsFolder, srv.settings.Main.HttpContentCacheTime, rpcClient)
+	srv.fev, err = api.NewFrontEndVersionForFrontEnd(ver.ProgramName(), ver.ProgramVersionString(), ver.GoVersion())
+	if err != nil {
+		return nil, err
+	}
+
+	srv.cachedContent, err = cc.NewCachedContent(assetsFolder, srv.settings.Main.HttpContentCacheTime, rpcClient, srv.fev)
 	if err != nil {
 		return nil, err
 	}
@@ -119,6 +127,10 @@ func (s *Server) router(rw http.ResponseWriter, req *http.Request) {
 
 	case cc.Asset_SettingsJson:
 		s.httpRespond_CachedContent(rw, s.cachedContent.SettingsJson)
+		return
+
+	case cc.Asset_FrontEndVersionJson:
+		s.httpRespond_CachedContent(rw, s.cachedContent.FrontEndVersionJson)
 		return
 
 	default:

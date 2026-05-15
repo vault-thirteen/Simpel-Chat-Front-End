@@ -1,10 +1,11 @@
 class MC {
-	constructor(pageOpeningType, request, settings, version, user) {
-		this.path = new Path("/api", "/settings.json");
+	constructor(pageOpeningType, request, settings, version, fev, user) {
+		this.path = new Path("/api", "/settings.json","/frontend-version.json");
 		this.rpc = new Rpc(this.path.api);
 		this.request = request;
 		this.settings = settings;
 		this.version = version;
+		this.fev=fev;
 		this.user = user;
 		this.room = null;
 		this.cs = null;
@@ -18,6 +19,9 @@ class MC {
 
 		this.version = new Version();
 		(await this.version.fetch()).save().load();
+
+		this.fev = new FEV();
+		(await this.fev.fetch()).save().load();
 
 		initHeaderAndFooter();
 
@@ -45,12 +49,17 @@ const Varname = {
 	Settings_PasswordLengthMin: "settings_PasswordLengthMin",
 	Settings_PasswordLengthMax: "settings_PasswordLengthMax",
 
-	// Version.
+	// Server's Version.
 	Version_ServerName: "version_ServerName",
 	Version_ChatFamily: "version_ChatFamily",
 	Version_AppName: "version_AppName",
 	Version_AppVersion: "version_AppVersion",
 	Version_Golang: "version_Golang",
+
+	// Front-end's Version.
+	FEV_AppName: "fev_AppName",
+	FEV_AppVersion: "fev_AppVersion",
+	FEV_GoVersion: "fev_GoVersion",
 
 	// Token.
 	Token: "token",
@@ -126,7 +135,8 @@ const Msg = {
 	Dot: ".",
 	GenericErrorPrefix: "Error: ",
 	SettingsReceived: "Settings have been received",
-	VersionReceived: "Version has been received",
+	VersionReceived: "Server version has been received",
+	FEVReceived: "Front-end version has been received",
 	SessionIsOutdated: "Session is outdated",
 	YouAreAnAdministrator: "You are an administrator",
 	EnteringRoom: "Entering room",
@@ -244,6 +254,7 @@ class Settings {
 	}
 }
 
+// Server's Version.
 class Version {
 	constructor(serverName, chatFamily, appName, appVersion, golang) {
 		this.serverName = serverName;
@@ -287,6 +298,50 @@ class Version {
 			localStorage.getItem(Varname.Version_Golang),
 		);
 		Object.assign(this, v);
+		return this;
+	}
+}
+
+// Front-End's Version.
+class FEV {
+	constructor(appName, appVersion, goVersion) {
+		this.appName = appName;
+		this.appVersion = appVersion;
+		this.goVersion = goVersion;
+	}
+
+	fromJson(j) {
+		let fev = new FEV(j.appName, j.appVersion, j.goVersion);
+		Object.assign(this, fev);
+		return this;
+	}
+
+	async fetch() {
+		let req = new HttpRequest(mc.path.fev, HttpMethod.Get);
+		let resp= await req.send();
+		if (!resp.isOk) {
+			console.error(ApiRequest.composeFrontEndError(resp));
+			return null;
+		}
+		this.fromJson(resp.jsonObject.frontEndVersion);
+		console.info(Msg.FEVReceived + Msg.Dot);
+		return this;
+	}
+
+	save() {
+		localStorage.setItem(Varname.FEV_AppName, this.appName.toString());
+		localStorage.setItem(Varname.FEV_AppVersion, this.appVersion.toString());
+		localStorage.setItem(Varname.FEV_GoVersion, this.goVersion.toString());
+		return this;
+	}
+
+	load() {
+		let fev = new FEV(
+			localStorage.getItem(Varname.FEV_AppName),
+			localStorage.getItem(Varname.FEV_AppVersion),
+			localStorage.getItem(Varname.FEV_GoVersion),
+		);
+		Object.assign(this, fev);
 		return this;
 	}
 }
@@ -707,9 +762,10 @@ class Now {
 }
 
 class Path {
-	constructor(api, settings) {
+	constructor(api, settings,fev) {
 		this.api = api;
 		this.settings = settings;
+		this.fev=fev;
 	}
 }
 

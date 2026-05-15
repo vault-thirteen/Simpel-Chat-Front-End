@@ -57,7 +57,7 @@ func NewFrontEnd(settingsFilePath string, ver *ver.Versioneer) (fe *FrontEnd, er
 		return nil, err
 	}
 
-	fe.server, err = server.NewServer(fe.settings, cec, rpcClient, serverStartTime, fe.settings.Main.AssetsFolder)
+	fe.server, err = server.NewServer(fe.settings, cec, rpcClient, serverStartTime, fe.settings.Main.AssetsFolder, ver)
 	if err != nil {
 		return nil, err
 	}
