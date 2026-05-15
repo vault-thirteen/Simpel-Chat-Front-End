@@ -1,0 +1,19 @@
+{
+  "settings": {
+    "frontEnd": {
+      "hostName": "localhost",
+      "portNumber": 443,
+      "certFile": "certificate\\server-cert.pem",
+      "keyFile": "certificate\\server-key.pem",
+      "assetsFolder": "assets",
+      "httpContentCacheTime": 300
+    },
+    "rpc": {
+      "serverName": "localhost",
+      "portNumber": 2000,
+      "schema": "https",
+      "enableSelfSignedCertificate": true,
+      "apiPath": "/api"
+    }
+  }
+}

@@ -1,0 +1,232 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+}
+
+table.pageHeader {
+	margin-bottom: 12px;
+	width: 100%;
+	background-color: beige;
+}
+
+.pageHeader .header {
+	font-size: 20px;
+}
+
+table.pageFooter {
+	margin-top: 12px;
+	width: 100%;
+	background-color: azure;
+}
+
+.pageFooter .footer {
+	color: grey;
+	font-size: 13px;
+}
+
+.min-width {
+	width: 1%;
+	white-space: nowrap;
+}
+
+.pageContent .main1 input,
+.pageContent .main2 input,
+.pageContent .main3 input,
+.pageContent .main4 input,
+.pageContent .logreg input,
+.pageContent .reg1 input,
+.pageContent .reg2 input,
+.pageContent .login1 input,
+.pageContent .login2 input,
+.pageContent .logout input,
+.pageContent .chpwd1 input,
+.pageContent .chpwd2 input,
+.pageContent .ban input,
+.pageContent .addroom input,
+.pageContent .delroom input,
+.pageContent .rooms input,
+.pageContent .moderators input,
+.pageContent .aru input,
+.pageContent .user input,
+.pageContent .users input {
+	margin: 3px
+}
+
+.pageContent .roomsData th,
+.pageContent .roomsData td,
+.pageContent .user .info th,
+.pageContent .user .info td,
+.pageContent .users .info th,
+.pageContent .users .info td {
+	padding: 3px;
+}
+
+.pageContent .roomsData table,
+.pageContent .roomsData th,
+.pageContent .roomsData td,
+.pageContent .user .info table,
+.pageContent .user .info th,
+.pageContent .user .info td,
+.pageContent .users .info table,
+.pageContent .users .info th,
+.pageContent .users .info td {
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+}
+
+div.roomname {
+	margin: 5px;
+	padding: 5px;
+}
+
+div.roomname input.quit {
+	margin-right: 16px;
+}
+
+span.roomname {
+	color: darkviolet;
+}
+
+div.newmsg {
+	border: 1px black solid;
+	border-collapse: collapse;
+	margin: 5px;
+	padding: 5px;
+}
+
+div.newmsg form {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+input.newmsg {
+	display: flex;
+	flex-grow: 1;
+}
+
+div.unm {
+	height: 100%;
+	max-height: 100%;
+	background-color: transparent;
+}
+
+td.userlist {
+	width: 25%;
+	max-width: 300px;
+	vertical-align: top;
+}
+
+td.messagelist {
+	vertical-align: top;
+}
+
+div.c1 {
+	background-color: #FFEEFF;
+	border: 1px black solid;
+}
+
+div.c2 {
+	border: 1px black solid;
+}
+
+div.c1h {
+	font-weight: bold;
+	text-align: center;
+	padding: 3px;
+}
+
+div.c1t {
+	width: 100%;
+	max-height: 200px;
+	overflow-y: scroll;
+	scrollbar-gutter: stable;
+	margin: 0;
+	min-width: 160px;
+	max-width: 200px;
+	word-break: break-all;
+}
+
+div.c2h {
+	font-weight: bold;
+	text-align: center;
+	padding: 3px;
+}
+
+div.c2t {
+	width: 100%;
+	max-height: 300px;
+	overflow-y: auto;
+	scrollbar-gutter: stable;
+	margin: 0;
+	max-width: 600px;
+	word-break: break-all;
+}
+
+table.ult,
+table.ult th,
+table.ult td {
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+	margin: 4px;
+	padding: 4px;
+}
+
+table.mlt,
+table.mlt th,
+table.mlt td {
+	padding: 4px;
+}
+
+table.msg {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+tr.msgh td {
+	background-color: #FFEEBB;
+}
+
+table.msg td {
+	border: 1px black solid;
+}
+
+span.author,
+span.date {
+	color: grey;
+	font-weight: normal;
+}
+
+span.author2 {
+	color: brown;
+}
+
+span.date2 {
+	color: blue;
+}
+
+span.msgtext {
+	color: black;
+}
+
+span.hint {
+	color: darkred;
+}
