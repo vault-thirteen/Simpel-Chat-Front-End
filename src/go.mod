@@ -3,9 +3,9 @@ module github.com/vault-thirteen/Simpel-Chat-Front-End/src
 go 1.25.10
 
 require (
-	github.com/vault-thirteen/JSON-RPC-M1 v0.3.25
-	github.com/vault-thirteen/Simpel-Chat-Server/src v0.7.1
-	github.com/vault-thirteen/auxie v0.36.4
+	github.com/vault-thirteen/JSON-RPC-M1 v0.3.26
+	github.com/vault-thirteen/Simpel-Chat-Server/src v0.7.2
+	github.com/vault-thirteen/auxie v0.36.5
 )
 
 require (
