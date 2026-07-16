@@ -1,6 +1,6 @@
 # Simpel Chat Front-End
 
-This is a front-end part for the `Simpel Chat` 
+This is a front-end part for the `Simpel Chat`. 
 
 The server part is available at another repository:  
 https://github.com/vault-thirteen/Simpel-Chat-Server
@@ -10,12 +10,12 @@ word `Simple` in its normal, unspoiled form.
 
 ## Functionality
 
-The front-end part supports all the functionality of the server, I.E. it has 
+The front-end part supports all the functionality of the server, i.e. it has 
 full support of the application programming interface of the server, also 
 known as server's API. See the `api.js` file for more information.
 
 The front-end part is clever enough to read server's settings from the server, 
-I.E. it does not need to "hard-code" settings in the configuration file.
+i.e. it does not need to "hard-code" settings in the configuration file.
 
 The front-end part caches static files for economy of network traffic.
 
@@ -62,8 +62,8 @@ folder.
 
 > go install github.com/vault-thirteen/Simpel-Chat-Front-End/src@latest
 
-5. Replace the executable file created by build script by the file received 
-with `go install` command.
+5. Replace the executable file created by the build script with the file 
+received with `go install` command.
 
 6. Say "Thank you" to the developers of Go language for not fixing old bugs in 
 `go install` tool, for old bugs with versioning and many other old bugs in Go 
@@ -74,15 +74,16 @@ see an old versioning bug and will be unable to use the front-end normally.
 
 ## Usage
 
-To start a front-end, compile the application and provide it with a path to the 
-application configuration file. A build script `build.bat` can help you.
+To start a front-end part, compile the application and provide it with a path 
+to the application configuration file. A build script `build.bat` can help you.
 
 > front-end.exe /path/to/front-end.json
 
 An example of an application configuration file can be found in the `settings` 
 folder, the file is named `front-end.json`.
 
-Open a web browser at `https://localhost` address to start using the web interface.
+Open a web browser at `https://localhost` address to start using the web 
+interface.
 
 The default listening port of the front-end part is a standard HTTPS port 443. 
 If you need to change the port, you can tweak the configuration in the settings 
