@@ -4,7 +4,7 @@ go 1.25.12
 
 require (
 	github.com/vault-thirteen/JSON-RPC-M1 v0.3.27
-	github.com/vault-thirteen/Simpel-Chat-Server/src v0.7.3
+	github.com/vault-thirteen/Simpel-Chat-Server/src v0.7.4
 	github.com/vault-thirteen/auxie v0.36.6
 )
 
