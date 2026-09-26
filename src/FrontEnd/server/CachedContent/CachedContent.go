@@ -9,10 +9,10 @@ import (
 	"github.com/vault-thirteen/Simpel-Chat-Server/src/Chat/models/rpc"
 	"github.com/vault-thirteen/Simpel-Chat-Server/src/Chat/models/rpc/rqrp"
 	mime "github.com/vault-thirteen/auxie/MIME"
+	cci "github.com/vault-thirteen/auxie/http-helper/CachedContentItem"
 
 	"github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/api"
 	rmc "github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/rpc/Client"
-	cci "github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/server/CachedContentItem"
 )
 
 type CachedContent struct {

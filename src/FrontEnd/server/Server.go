@@ -18,11 +18,11 @@ import (
 	mime "github.com/vault-thirteen/auxie/MIME"
 	ver "github.com/vault-thirteen/auxie/Versioneer/classes/Versioneer"
 	"github.com/vault-thirteen/auxie/header"
+	cci "github.com/vault-thirteen/auxie/http-helper/CachedContentItem"
 
 	"github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/api"
 	rmc "github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/rpc/Client"
 	cc "github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/server/CachedContent"
-	cci "github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/server/CachedContentItem"
 	"github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/settings"
 	"github.com/vault-thirteen/Simpel-Chat-Front-End/src/helper"
 )

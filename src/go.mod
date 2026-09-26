@@ -5,7 +5,7 @@ go 1.26.8
 require (
 	github.com/vault-thirteen/JSON-RPC-M1 v0.3.30
 	github.com/vault-thirteen/Simpel-Chat-Server/src v0.7.7
-	github.com/vault-thirteen/auxie v0.37.0
+	github.com/vault-thirteen/auxie v0.38.0
 )
 
 require (
