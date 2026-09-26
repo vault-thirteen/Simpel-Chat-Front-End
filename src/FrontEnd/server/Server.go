@@ -18,6 +18,7 @@ import (
 	mime "github.com/vault-thirteen/auxie/MIME"
 	ver "github.com/vault-thirteen/auxie/Versioneer/classes/Versioneer"
 	"github.com/vault-thirteen/auxie/header"
+	hh "github.com/vault-thirteen/auxie/http-helper"
 	cci "github.com/vault-thirteen/auxie/http-helper/CachedContentItem"
 
 	"github.com/vault-thirteen/Simpel-Chat-Front-End/src/FrontEnd/api"
@@ -151,7 +152,7 @@ func (s *Server) httpRespond_InternalServerError(rw http.ResponseWriter) {
 func (s *Server) httpRespond_CachedContent(rw http.ResponseWriter, i *cci.CachedContentItem) {
 	now := time.Now().UTC()
 	rw.Header().Set(header.HttpHeaderContentType, i.ContentType())
-	helper.SetCacheTime(rw, i.TTLSec(), now)
+	hh.SetCacheTime(rw, i.TTLSec(), now)
 
 	_, err := rw.Write(i.Data())
 	if err != nil {
