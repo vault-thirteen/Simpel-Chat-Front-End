@@ -3,7 +3,7 @@ package cc
 import (
 	"context"
 	"encoding/json"
-	"path"
+	"path/filepath"
 
 	jrm1 "github.com/vault-thirteen/JSON-RPC-M1"
 	"github.com/vault-thirteen/Simpel-Chat-Server/src/Chat/models/rpc"
@@ -30,37 +30,38 @@ type CachedContent struct {
 func NewCachedContent(assetsFolderPath string, ttl int, rpcClient *rmc.Client, fev *api.FrontEndVersionForFrontEnd) (cc *CachedContent, err error) {
 	cc = new(CachedContent)
 
-	cc.IndexHtml, err = cci.NewCachedContentItemFromFile(path.Join(assetsFolderPath, Asset_IndexHtml), ContentType_Html, ttl)
+	cc.IndexHtml, err = cci.NewCachedContentItemFromFile(filepath.Join(assetsFolderPath, Asset_IndexHtml),
+		ContentType_Html, ttl)
 	if err != nil {
 		return nil, err
 	}
 
-	cc.MainJs, err = cci.NewCachedContentItemFromFile(path.Join(assetsFolderPath, Asset_MainJs), mime.TypeApplicationJavascript, ttl)
+	cc.MainJs, err = cci.NewCachedContentItemFromFile(filepath.Join(assetsFolderPath, Asset_MainJs), mime.TypeApplicationJavascript, ttl)
 	if err != nil {
 		return nil, err
 	}
 
-	cc.ApiJs, err = cci.NewCachedContentItemFromFile(path.Join(assetsFolderPath, Asset_ApiJs), mime.TypeApplicationJavascript, ttl)
+	cc.ApiJs, err = cci.NewCachedContentItemFromFile(filepath.Join(assetsFolderPath, Asset_ApiJs), mime.TypeApplicationJavascript, ttl)
 	if err != nil {
 		return nil, err
 	}
 
-	cc.ModelsJs, err = cci.NewCachedContentItemFromFile(path.Join(assetsFolderPath, Asset_ModelsJs), mime.TypeApplicationJavascript, ttl)
+	cc.ModelsJs, err = cci.NewCachedContentItemFromFile(filepath.Join(assetsFolderPath, Asset_ModelsJs), mime.TypeApplicationJavascript, ttl)
 	if err != nil {
 		return nil, err
 	}
 
-	cc.UiJs, err = cci.NewCachedContentItemFromFile(path.Join(assetsFolderPath, Asset_UiJs), mime.TypeApplicationJavascript, ttl)
+	cc.UiJs, err = cci.NewCachedContentItemFromFile(filepath.Join(assetsFolderPath, Asset_UiJs), mime.TypeApplicationJavascript, ttl)
 	if err != nil {
 		return nil, err
 	}
 
-	cc.StylesCss, err = cci.NewCachedContentItemFromFile(path.Join(assetsFolderPath, Asset_StylesCss), mime.TypeTextCss, ttl)
+	cc.StylesCss, err = cci.NewCachedContentItemFromFile(filepath.Join(assetsFolderPath, Asset_StylesCss), mime.TypeTextCss, ttl)
 	if err != nil {
 		return nil, err
 	}
 
-	cc.FaviconPng, err = cci.NewCachedContentItemFromFile(path.Join(assetsFolderPath, Asset_FaviconPng), mime.TypeImagePng, ttl)
+	cc.FaviconPng, err = cci.NewCachedContentItemFromFile(filepath.Join(assetsFolderPath, Asset_FaviconPng), mime.TypeImagePng, ttl)
 	if err != nil {
 		return nil, err
 	}
