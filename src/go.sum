@@ -9,8 +9,8 @@ github.com/rogpeppe/go-internal v1.16.0 h1:O9DK+vNMDVGLr2BeZqmpLeMjiMNkuXfcqntWb
 github.com/rogpeppe/go-internal v1.16.0/go.mod h1:DrUVZyrJU+txYW5/1kwtXQSMFio52ZOxX7yM1VHvnxs=
 github.com/vault-thirteen/JSON-RPC-M1 v0.3.30 h1:/bJGfZ1Fbm1DfPvH8JNDCxI2ssn4YZWijEYbAS236Ow=
 github.com/vault-thirteen/JSON-RPC-M1 v0.3.30/go.mod h1:RwWo5unmmCGTflK7GYm9OC0mSpIf9OEirbQQ6ogdD0Q=
-github.com/vault-thirteen/Simpel-Chat-Server/src v0.7.7 h1:DfoYk9KXj1m+8YGUyAb76yrv8tWlWqgEsJFmw7iM1DU=
-github.com/vault-thirteen/Simpel-Chat-Server/src v0.7.7/go.mod h1:RjLqgMdFGug8NrBzo865ez2LBFu/QKbDOE4cwAZHcMo=
+github.com/vault-thirteen/Simpel-Chat-Server/src v0.7.8 h1:miyEB5yOC4PLfKuW6xKSnbPEZYiezkp4eKz59iIgz7w=
+github.com/vault-thirteen/Simpel-Chat-Server/src v0.7.8/go.mod h1:/lqLXwK0i/4yB/xoYbAX9V6F+FZ4Xr+obVRf+M3n61o=
 github.com/vault-thirteen/auxie v0.38.0 h1:YPcqZV+LS5QY11kjqgy5q0x7vUZh9aD8yXD7LaMYVjs=
 github.com/vault-thirteen/auxie v0.38.0/go.mod h1:1H47lwQIorxPY8f9DKFfjxzzPbw2ve01n09w/DOaV5c=
 golang.org/x/sys v0.48.0 h1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=
